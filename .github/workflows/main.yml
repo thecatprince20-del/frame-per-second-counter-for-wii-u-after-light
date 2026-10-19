@@ -19,13 +19,12 @@ jobs:
         run: |
           dkp-pacman -Syyu --noconfirm
           dkp-pacman -S --noconfirm wiiu-dev
-
-      - name: Build Plugin
-        run: |
-          make
+            - name: Build Plugin
+        working-directory: ./source
+        run: make
 
       - name: Upload .wps Artifact
         uses: actions/upload-artifact@v4
         with:
           name: ProjectAfterLight-Plugin
-          path: "*.wps"
+          path: "source/*.wps"
