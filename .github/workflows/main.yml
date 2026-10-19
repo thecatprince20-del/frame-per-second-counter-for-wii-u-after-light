@@ -18,7 +18,7 @@ jobs:
       - name: Install WUPS Packages
         run: |
           dkp-pacman -Syyu --noconfirm
-          dkp-pacman -S --noconfirm wiiu-dev
+          dkp-pacman -S --noconfirm wiiu-dev wups
 
       - name: Build Plugin
         working-directory: ./source
