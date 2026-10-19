@@ -21,7 +21,7 @@ jobs:
           dkp-pacman -S --noconfirm wiiu-dev
             - name: Build Plugin
         working-directory: ./source
-        run: make
+       : make
 
       - name: Upload .wps Artifact
         uses: actions/upload-artifact@v4
