@@ -1,0 +1,31 @@
+name: Build Wii U Plugin
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitppc:latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Install WUPS Packages
+        run: |
+          dkp-pacman -Syyu --noconfirm
+          dkp-pacman -S --noconfirm wiiu-wups wiiu-wut
+
+      - name: Build Plugin
+        run: |
+          make
+
+      - name: Upload .wps Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ProjectAfterLight-Plugin
+          path: "*.wps"
